@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import logo from './assets/images/logo.svg';
+// import logo from './assets/images/logo.svg';
 import heroDesktop from './assets/images/image-web-3-desktop.jpg';
 import heroMobile from './assets/images/image-web-3-mobile.jpg';
 import retroPcs from './assets/images/image-retro-pcs.jpg';
@@ -27,7 +27,7 @@ const App = () => {
   return (
     <div className="app-container">
       <header className="header">
-        <img src={logo} alt="Logo" className="logo" />
+        <img src="logo.svg" alt="Logo" className="logo" />
         <nav className={menuOpen ? 'nav open' : 'nav'}>
           <button id="menu-close" className="menu-button" onClick={toggleMenu}>
             ×
