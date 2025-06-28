@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
+import React, {useEffect, useState } from "react";
+import "./App.css";
 // import logo from './assets/images/logo.svg';
-import heroDesktop from './assets/images/image-web-3-desktop.jpg';
-import heroMobile from './assets/images/image-web-3-mobile.jpg';
-import retroPcs from './assets/images/image-retro-pcs.jpg';
-import topLaptops from './assets/images/image-top-laptops.jpg';
-import gaming from './assets/images/image-gaming-growth.jpg';
-
+import heroDesktop from "./assets/images/image-web-3-desktop.jpg";
+import heroMobile from "./assets/images/image-web-3-mobile.jpg";
+import retroPcs from "./assets/images/image-retro-pcs.jpg";
+import topLaptops from "./assets/images/image-top-laptops.jpg";
+import gaming from "./assets/images/image-gaming-growth.jpg";
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
+  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1000);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+useEffect(() => {
+  const checkIsMobile = () => setIsMobile(window.innerWidth < 1000);
+  checkIsMobile(); // Run on mount
+  window.addEventListener('resize', checkIsMobile);
+  return () => window.removeEventListener('resize', checkIsMobile);
+}, []);
+
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -28,16 +27,26 @@ const App = () => {
     <div className="app-container">
       <header className="header">
         <img src="logo.svg" alt="Logo" className="logo" />
-        <nav className={menuOpen ? 'nav open' : 'nav'}>
+        <nav className={menuOpen ? "nav open" : "nav"}>
           <button id="menu-close" className="menu-button" onClick={toggleMenu}>
             ×
           </button>
           <ul className="nav-itmes">
-             <li><a href="#home">Home</a></li>
-            <li><a href="#new">New</a></li>
-            <li><a href="#popular">Popular</a></li>
-            <li><a href="#trending">Trending</a></li>
-            <li><a href="#categories">Categories</a></li>
+            <li>
+              <a href="#home">Home</a>
+            </li>
+            <li>
+              <a href="#new">New</a>
+            </li>
+            <li>
+              <a href="#popular">Popular</a>
+            </li>
+            <li>
+              <a href="#trending">Trending</a>
+            </li>
+            <li>
+              <a href="#categories">Categories</a>
+            </li>
           </ul>
         </nav>
         <button id="menu-button" className="menu-button" onClick={toggleMenu}>
@@ -48,11 +57,19 @@ const App = () => {
       <main className="main-content">
         <section className="hero-section">
           <div className="hero-img">
-            <img src={isMobile ? heroMobile : heroDesktop} alt="Hero Image" />
+            <picture>
+              <source media="(max-width: 999px)" srcSet={heroMobile} />
+              <img src={isMobile ? heroMobile : heroDesktop} alt="Web 3.0 future" />
+
+            </picture>
           </div>
           <div className="hero-text">
             <h1 className="main-text">The Bright Future of Web 3.0?</h1>
-            <p>We dive into the next evolution of the web that claims to put the power of the platforms back into the hands of the people. But is it really fulfilling its promise?</p>
+            <p>
+              We dive into the next evolution of the web that claims to put the
+              power of the platforms back into the hands of the people. But is
+              it really fulfilling its promise?
+            </p>
             <button className="read-more">Read more</button>
           </div>
         </section>
@@ -64,11 +81,17 @@ const App = () => {
           </div>
           <div className="news2">
             <h3 className="news2-h3">The Downsides of AI Artistry</h3>
-            <p>What are the possible adverse effects of on-demand AI image generation?</p>
+            <p>
+              What are the possible adverse effects of on-demand AI image
+              generation?
+            </p>
           </div>
           <div className="news3">
             <h3 className="news3-h3">Is VC Funding Drying Up?</h3>
-            <p>Private funding by VC firms is down 50% YOY. We take a look at what that means.</p>
+            <p>
+              Private funding by VC firms is down 50% YOY. We take a look at
+              what that means.
+            </p>
           </div>
         </aside>
       </main>
@@ -101,7 +124,25 @@ const App = () => {
       </section>
 
       <footer>
-        <p>Challenge by <a href="https://www.crio.do/" target="_blank" rel="noopener noreferrer">Crio.Do</a>. Coded by <a href="https://github.com/ShivamSh002" target="_blank" rel="noopener noreferrer">Shivam Sharma</a>.</p>
+        <p>
+          Challenge by{" "}
+          <a
+            href="https://www.crio.do/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Crio.Do
+          </a>
+          . Coded by{" "}
+          <a
+            href="https://github.com/ShivamSh002"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Shivam Sharma
+          </a>
+          .
+        </p>
       </footer>
     </div>
   );
