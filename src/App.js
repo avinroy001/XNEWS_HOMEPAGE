@@ -1,23 +1,22 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 // import logo from './assets/images/logo.svg';
 import heroDesktop from "./assets/images/image-web-3-desktop.jpg";
-import heroMobile from "./assets/images/image-web-3-mobile.jpg";
-import retroPcs from "./assets/images/image-retro-pcs.jpg";
-import topLaptops from "./assets/images/image-top-laptops.jpg";
-import gaming from "./assets/images/image-gaming-growth.jpg";
+// import heroMobile from "./assets/images/image-web-3-mobile.jpg";
+// import retroPcs from "./assets/images/image-retro-pcs.jpg";
+// import topLaptops from "./assets/images/image-top-laptops.jpg";
+// import gaming from "./assets/images/image-gaming-growth.jpg";
 
 const App = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-useEffect(() => {
-  const checkIsMobile = () => setIsMobile(window.innerWidth < 1000);
-  checkIsMobile(); // Run on mount
-  window.addEventListener('resize', checkIsMobile);
-  return () => window.removeEventListener('resize', checkIsMobile);
-}, []);
-
+  useEffect(() => {
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 1000);
+    checkIsMobile(); // Run on mount
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -57,12 +56,14 @@ useEffect(() => {
       <main className="main-content">
         <section className="hero-section">
           <div className="hero-img">
-            <picture>
-              <source media="(max-width: 999px)" srcSet={heroMobile} />
-              <img src={isMobile ? heroMobile : heroDesktop} alt="Web 3.0 future" />
-
-            </picture>
+            <img
+              src={
+                isMobile ? "/assets/images/image-web-3-mobile.jpg" : heroDesktop
+              }
+              alt="Web 3.0 future"
+            />
           </div>
+
           <div className="hero-text">
             <h1 className="main-text">The Bright Future of Web 3.0?</h1>
             <p>
@@ -98,7 +99,7 @@ useEffect(() => {
 
       <section className="second-section">
         <div className="card">
-          <img src={retroPcs} alt="Reviving Retro PCs" />
+         <img src="/assets/images/image-retro-pcs.jpg" alt="Reviving Retro PCs" />
           <div className="card-content">
             <h3>01</h3>
             <h3 className="card-h3">Reviving Retro PCs</h3>
@@ -106,7 +107,7 @@ useEffect(() => {
           </div>
         </div>
         <div className="card">
-          <img src={topLaptops} alt="Top 10 Laptops of 2022" />
+          <img src="/assets/images/image-top-laptops.jpg" alt="Top 10 Laptops of 2022" />
           <div className="card-content">
             <h3>02</h3>
             <h3 className="card-h3">Top 10 Laptops of 2022</h3>
@@ -114,7 +115,7 @@ useEffect(() => {
           </div>
         </div>
         <div className="card">
-          <img src={gaming} alt="The Growth of Gaming" />
+          <img src="/assets/images/image-gaming-growth.jpg" alt="The Growth of Gaming" />
           <div className="card-content">
             <h3>03</h3>
             <h3 className="card-h3">The Growth of Gaming</h3>
